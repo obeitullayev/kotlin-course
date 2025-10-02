@@ -23,18 +23,18 @@ fun example1(arg:String) {
     if ("невозможно" in arg) {
         println(arg.replace("невозможно", "совершенно точно возможно, просто требует времени"))
     } else if (arg.startsWith("Я не уверен")) {
-        println(arg+", но моя интуиция говорит об обратном")
+        println("${arg}, но моя интуиция говорит об обратном")
     } else if ("катастрофа" in arg) {
         val index: Int = arg.indexOf("катастрофа")
         val after_sub_string: String = arg.substring(index+11)
         val before_sub_string: String = arg.substring(0, index)
-        println(before_sub_string+"интересное событие "+after_sub_string)
+        println("${before_sub_string} интересное событие ${after_sub_string}")
     } else if (arg.endsWith("без проблем")) {
         val index: Int = arg.indexOf("без проблем")
         val sub_string: String = arg.substring(0, index)
-        println(sub_string+"с парой интересных вызовов на пути")
+        println("${sub_string} с парой интересных вызовов на пути")
     } else if (!arg.contains(" ")) {
-        println("Иногда, "+arg.lowercase()+", но не всегда")
+        println("Иногда, ${arg.lowercase()}, но не всегда")
     }
 }
 
@@ -71,7 +71,7 @@ fun example4(arg: String) {
     val sub_str_a = arg.substring(0, index_a)
     val sub_str_dot = arg.substring(index_a+1, index_dot)
     val sub_str_else = arg.substring(index_dot+1)
-    println(sub_str_a+" [at] "+sub_str_dot+" [dot] "+sub_str_else)
+    println("${sub_str_a} [at] ${sub_str_dot} [dot] ${sub_str_else}")
 }
 
 //5. Извлечение имени файла из пути.
