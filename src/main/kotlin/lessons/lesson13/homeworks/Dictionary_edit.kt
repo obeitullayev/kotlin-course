@@ -154,13 +154,62 @@ fun convertDictToList(){
 }
 
 // 21 Преобразуйте изменяемый словарь с результатами последнего тестирования в неизменяемый для архивации.
-// 22 Преобразуйте словарь, содержащий числовой ID теста и данные о времени выполнения тестов, заменив идентификаторы тестов на их строковый аналог (например через toString()).
-// 23 Для словаря с оценками производительности различных версий приложения (ключи - строковая версия, значения - дробное число времени ответа сервера) увеличьте каждую оценку на 10%, чтобы учесть новые условия тестирования.
+fun convertMutableToMap(){
+    val dict = mutableMapOf("TestID_100" to "Passed", "TestID_101" to "Failed", "TestID_102" to "Skipped")
+    val map= dict.toMap()
+    println(map)
+}
+
+// 22 Преобразуйте словарь, содержащий числовой ID теста и данные о времени выполнения тестов, заменив идентификаторы тестов на их строковый
+// аналог (например через toString()).
+fun convertKeyIntTOString(){
+    val dict = mutableMapOf("100" to 2, "101" to 1, "102" to 3)
+    val converted = dict.mapKeys { it.key.toString() }//.keys.map { it.takeLast(1) }
+    println(converted)
+}
+
+// 23 Для словаря с оценками производительности различных версий приложения (ключи - строковая версия, значения - дробное число времени ответа сервера)
+// увеличьте каждую оценку на 10%, чтобы учесть новые условия тестирования.
+fun convertToTen(){
+    val dict = mutableMapOf("2" to 2.0, "1" to 1.0, "3" to 3.0)
+    val modified = dict.mapValues { it.value*1.1}.mapValues { """%.2f""".format(it.value) }
+    println(modified)
+}
+
 // 24 Проверьте, пуст ли словарь с ошибками компиляции тестов.
+fun dictISEmpty(){
+    val dict = mapOf(300 to "Redirect", 302 to "Found", 404 to "Not Found")
+    val emptyDict= dict.isEmpty()
+    println(emptyDict)
+}
+
 // 25 Убедитесь, что словарь с результатами нагрузочного тестирования не пуст.
+fun dictIsNotEmpty(){
+    val dict = mutableMapOf("TestID_100" to "Passed", "TestID_101" to "Failed", "TestID_102" to "Skipped")
+    val notEmptyDict= dict.isNotEmpty()
+    println(notEmptyDict)
+}
+
 // 26 Проверьте, прошли ли успешно все автоматизированные тесты в словаре с результатами.
+fun checkTestRun(){
+    val dict = mutableMapOf("TestID_100" to "Passed", "TestID_101" to "Failed", "TestID_102" to "Skipped")
+    val allPassedTest= dict.all { it.value=="Passed" }
+    println(allPassedTest)
+}
+
 // 27 Определите, содержит ли словарь с результатами тестирования хотя бы один тест с ошибкой.
+fun getErrorTest(){
+    val dict = mutableMapOf("TestID_100" to "Passed", "TestID_101" to "Failed", "TestID_102" to "Skipped")
+    val errorTest= dict.any { it.value=="Failed" }
+    println(errorTest)
+}
+
 // 28 Отфильтруйте словарь с результатами тестирования сервисов, оставив только те тесты, которые не прошли успешно и содержат в названии “optional”.
+fun filterFailedOptionalTest() {
+    val dict = mutableMapOf("TestID_100" to "Failed", "TestID_101_optional" to "Failed", "TestID_102" to "Skipped")
+    val errorTest = dict.filter { it.value == "Failed" && it.key.contains("optional") }
+    println(errorTest)
+}
 
 fun main(){
     avgRunTime()
@@ -183,4 +232,12 @@ fun main(){
     removeSkippedTests()
     copyEditedDict()
     convertDictToList()
+    convertMutableToMap()
+    convertKeyIntTOString()
+    convertToTen()
+    dictISEmpty()
+    dictIsNotEmpty()
+    checkTestRun()
+    getErrorTest()
+    filterFailedOptionalTest()
 }
