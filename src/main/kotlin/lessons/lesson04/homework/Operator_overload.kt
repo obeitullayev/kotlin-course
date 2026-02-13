@@ -59,10 +59,6 @@ class Step( val number: Int){
         return number..num.number
     }
 
-    operator fun contains(items: IntRange): Boolean{
-        return number in items
-    }
-
 }
 
 operator fun IntRange.contains(step: Step): Boolean {
