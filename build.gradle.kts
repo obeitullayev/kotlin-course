@@ -10,6 +10,9 @@ repositories {
 }
 
 dependencies {
+    // Добавляем библиотеку Hamcrest для тестов
+    testImplementation("org.hamcrest:hamcrest:2.2")
+
     testImplementation(kotlin("test"))
 }
 
